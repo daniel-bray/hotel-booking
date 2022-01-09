@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { CountriesService } from 'src/app/services/countries.service';
+import { CountriesService } from '../../services/countries.service';
 
 @Component({
   selector: 'app-booking',
