@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CountriesService } from '../../services/countries.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-booking',
@@ -21,13 +22,10 @@ export class BookingComponent implements OnInit {
   formGroup: FormGroup;
 
   ngOnInit(): void {
-    this.countriesService.getCountries().subscribe(
-      (response) => {
-        this.countries = response;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    of(this.countriesService.getCountries()).subscribe({
+      next: (response) => (this.countries = response),
+      error: (error) => console.error(error),
+      complete: () => console.info('complete'),
+    });
   }
 }
